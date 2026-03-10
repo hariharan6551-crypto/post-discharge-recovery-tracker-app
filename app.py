@@ -1,11 +1,3 @@
-<<<<<<< HEAD
-import streamlit.web.cli as stcli
-import sys
-
-if __name__ == "__main__":
-    sys.argv = ["streamlit", "run", "AI_Healthcare_Analytics/frontend/dashboard.py"]
-    sys.exit(stcli.main())
-=======
 import sys
 import os
 
@@ -269,4 +261,3 @@ st.plotly_chart(pred_chart,use_container_width=True)
 st.subheader("Filtered Dataset")
 
 st.dataframe(filtered_df)
->>>>>>> ca2a909dfbaab2e32df798d9635a28afebcf3c20
