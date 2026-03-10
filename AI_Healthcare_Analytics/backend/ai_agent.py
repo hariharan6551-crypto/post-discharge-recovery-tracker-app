@@ -1,15 +1,18 @@
-def ask_ai(question, df):
+def ask_ai(question,df):
 
-    question = question.lower()
+    q = question.lower()
 
-    if "average" in question:
-        return f"Average Indicator Value is {round(df['Avg_Indicator'].mean(),2)}"
+    if "average" in q:
+        return f"Average indicator value is {round(df.select_dtypes('number').mean().mean(),2)}"
 
-    if "highest year" in question:
-        year = df.loc[df['Avg_Indicator'].idxmax()]['Year_numeric']
-        return f"Highest indicator value occurred in {year}"
+    if "numerator" in q:
+        return f"Total numerator is {int(df.select_dtypes('number').sum()[0])}"
 
-    if "records" in question:
-        return f"The dataset contains {len(df)} records."
+    if "denominator" in q:
+        return f"Total denominator is {int(df.select_dtypes('number').sum()[-1])}"
 
-    return "Please ask about the dataset such as average, highest year or records."
+    if "highest" in q:
+        row = df.iloc[df.select_dtypes('number').idxmax()[0]]
+        return f"Highest value row: {row.to_dict()}"
+
+    return "Ask about average, numerator, denominator, or highest values."
